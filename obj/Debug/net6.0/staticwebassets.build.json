@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "1MGGa2VDN1HVOMz3QlZSQXuQdGxbF51ZmeKZMJQ2Nj0=",
+  "Source": "Test-API-Interest",
+  "BasePath": "_content/Test-API-Interest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
