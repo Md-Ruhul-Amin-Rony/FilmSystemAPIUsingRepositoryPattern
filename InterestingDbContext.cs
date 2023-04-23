@@ -62,11 +62,11 @@ namespace Test_API_Interest
                 //      .HasColumnName("PersonId")
                 //      .;
 
-                entity.HasOne(e => e.Person)
-                      .WithMany(w => w.Genres)
-                      .HasForeignKey(d => d.PersonId)
-                      .OnDelete(DeleteBehavior.ClientSetNull)
-                      .HasConstraintName("FK_Genres_Person");
+                //entity.HasOne(e => e.Person)
+                //      .WithMany(w => w.Genres)
+                //      .HasForeignKey(d => d.PersonId)
+                //      .OnDelete(DeleteBehavior.ClientSetNull)
+                //      .HasConstraintName("FK_Genres_Person");
             });
 
 

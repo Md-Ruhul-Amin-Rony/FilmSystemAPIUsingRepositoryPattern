@@ -27,20 +27,43 @@ namespace Test_API_Interest.Persistence.Repositories
         public List<Genre> GetAllGenres()
         {
             var allGenres = _context.Genres.AsNoTracking()
-                                            .Include(i => i.Person)
+                                            .Include(i => i.Persons)
                                             .Include(i => i.Movies)
                                             .ToList();
             return allGenres;
         }
 
-        public List<Genre> GetAllGenresByPeronID(int personId)
+        public List<Genre> GetAllGenresByPeronID2(int personId)
         {
             var allGenres = _context.Genres.AsNoTracking()
-                                                        .Include(i => i.Person)
+                                                        .Include(i => i.Persons)
+                                                        
                                                         .Include(i => i.Movies)
-                                                            .Where(g => g.Person.PersonId == personId)
+                                                            
                                                             .ToList();
-            return allGenres;
+            var genres=new List<Genre>();
+            foreach (var item in allGenres)
+            {
+                foreach (var person in item.Persons)
+                {
+                    if (person.PersonId==personId)
+                    {
+                        genres.Add(item);
+                    }
+                }
+            }
+            return genres;
+        }
+        public Person GetAllGenresByPeronID(int personId)
+        {
+            var person = _context.People.AsNoTracking()
+                                 .Include(i => i.Genres)
+                                 //.Include(i => i.Movies)
+                                 .Where(p => p.PersonId == personId)
+                                 .FirstOrDefault();
+
+            return person;
+
         }
     }
 }

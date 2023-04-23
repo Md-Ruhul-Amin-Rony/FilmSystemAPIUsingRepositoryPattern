@@ -74,6 +74,7 @@ namespace Test_API_Interest.Controllers
                 }
 
                 ViewModel.Add(response);
+                
             }
             return Ok(ViewModel);
         }
@@ -81,16 +82,16 @@ namespace Test_API_Interest.Controllers
         [HttpPost("AddToNewGenre")]
         public async Task<ActionResult> AddToNewGenre([FromBody] AddToNewGenreCommandRequest model)
         {
-            _person.AddToNewGenre(model.GenreId, model.PersonId);
+            _person.AddToNewGenre( model.PersonId, model.GenreId);
             return Ok();
         }
 
         [HttpGet("Get/Person/{personId}")]
-        public async Task<ActionResult> GetPersonById([FromBody] int personId)
+        public async Task<ActionResult> GetPersonById( int personId)
         {
            var per = _person.GetPersonByID(personId);
 
-            object ViewModel = new object();
+            //object ViewModel = new object();
       
                 var response = new
                 {
@@ -119,7 +120,7 @@ namespace Test_API_Interest.Controllers
                     });
                 }
             
-            return Ok(ViewModel);
+            return Ok(response);
         }
 
         [HttpPost("Add/MovieRatings")]

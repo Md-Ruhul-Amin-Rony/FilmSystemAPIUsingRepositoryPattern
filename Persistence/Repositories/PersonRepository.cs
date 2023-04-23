@@ -30,7 +30,7 @@ namespace Test_API_Interest.Persistence.Repositories
             {
                 Title = title,
                 Description = description,
-                Person = person
+                //Person = person
             };
             person.Genres.Add(genre);
             _context.SaveChanges();
@@ -66,6 +66,9 @@ namespace Test_API_Interest.Persistence.Repositories
             var person = _context.People.Where(p => p.PersonId == personId).FirstOrDefault();
 
             person.Genres.Add(genre);
+           // genre.Persons.Add(person);
+
+            //_context.People.Update(person);
             _context.SaveChanges();
 
         }

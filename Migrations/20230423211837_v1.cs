@@ -9,6 +9,20 @@ namespace Test_API_Interest.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Genre",
+                columns: table => new
+                {
+                    GenreId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GenreIdIdentity", x => x.GenreId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
@@ -23,23 +37,27 @@ namespace Test_API_Interest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genre",
+                name: "GenrePerson",
                 columns: table => new
                 {
-                    GenreId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonId = table.Column<int>(type: "int", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GenresGenreId = table.Column<int>(type: "int", nullable: false),
+                    PersonsPersonId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreIdIdentity", x => x.GenreId);
+                    table.PrimaryKey("PK_GenrePerson", x => new { x.GenresGenreId, x.PersonsPersonId });
                     table.ForeignKey(
-                        name: "FK_Genres_Person",
-                        column: x => x.PersonId,
+                        name: "FK_GenrePerson_Genre_GenresGenreId",
+                        column: x => x.GenresGenreId,
+                        principalTable: "Genre",
+                        principalColumn: "GenreId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GenrePerson_Person_PersonsPersonId",
+                        column: x => x.PersonsPersonId,
                         principalTable: "Person",
-                        principalColumn: "PersonId");
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,9 +88,9 @@ namespace Test_API_Interest.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Genre_PersonId",
-                table: "Genre",
-                column: "PersonId");
+                name: "IX_GenrePerson_PersonsPersonId",
+                table: "GenrePerson",
+                column: "PersonsPersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movie_GenreId",
@@ -87,6 +105,9 @@ namespace Test_API_Interest.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "GenrePerson");
+
             migrationBuilder.DropTable(
                 name: "Movie");
 

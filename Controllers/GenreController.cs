@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Runtime.ConstrainedExecution;
 using Test_API_Interest.Contracts.IPersistance;
+using Test_API_Interest.DataDomain.Entities;
 using Test_API_Interest.Models;
 
 namespace Test_API_Interest.Controllers
@@ -26,36 +28,41 @@ namespace Test_API_Interest.Controllers
         [HttpGet("GetAllGenreByPersonID/{personId}")]
         public async Task<ActionResult> GetAllGenreByPersonID(int personId)
         {
-            var genres = _genre.GetAllGenresByPeronID(personId);
-            List<object> ViewModel = new List<object>();
-            foreach (var per in genres)
-            {
-                var response = new
-                {
-                    GenreId = per.GenreId,
-                    title = per.Title,
-                    description = per.Description,
-                    person = new
-                    {
-                        id = per.Person.PersonId,
-                        name = per.Person.Name,
-                        email = per.Person.Email
-                    },
-                    movies = new List<dynamic>()
-                };
-                
-                foreach (var item in per.Movies)
-                {
-                    response.movies.Add(new
-                    {
-                        id = item.MovieId,
-                        link = item.Link
-                    });
-                }
+            var per = _genre.GetAllGenresByPeronID(personId);
+            
 
-                ViewModel.Add(response);
+
+           // object ViewModel = new object();
+
+            var response = new
+            {
+                PersonId = per.PersonId,
+                name = per.Name,
+                email = per.Email,
+                genres = new List<dynamic>()
+               // movies = new List<dynamic>()
+            };
+            foreach (var item in per.Genres)
+            {
+                response.genres.Add(new
+                {
+                    id = item.GenreId,
+                    title = item.Title,
+                    description = item.Description,
+                });
             }
-            return Ok(ViewModel);
+            //foreach (var item in per.Movies)
+            //{
+            //    response.movies.Add(new
+            //    {
+            //        id = item.MovieId,
+            //        link = item.Link,
+            //        ratings = item.Rating
+            //    });
+            //}
+
+            return Ok(response);
+
         }
 
 
@@ -71,14 +78,26 @@ namespace Test_API_Interest.Controllers
                     GenreId = per.GenreId,
                     title = per.Title,
                     description = per.Description,
-                    person = new
-                    {
-                        id = per.Person.PersonId,
-                        name = per.Person.Name,
-                        email = per.Person.Email
-                    },
+                    person = new List<dynamic>(),
+
+                    //{
+                    //    id = per.Person.PersonId,
+                    //    name = per.Person.Name,
+                    //    email = per.Person.Email
+                    //},
                     movies = new List<dynamic>()
                 };
+                foreach (var item in per.Persons)
+                {
+                    response.person.Add(new
+                    {
+                        id = item.PersonId,
+                        name = item.Name,
+                        email = item.Email
+                    }
+                        );
+
+                }
 
                 foreach (var item in per.Movies)
                 {
