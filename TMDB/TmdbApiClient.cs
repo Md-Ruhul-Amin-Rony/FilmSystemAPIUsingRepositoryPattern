@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using Test_API_Interest.TMDB.Models;
 using Microsoft.EntityFrameworkCore;
 using Test_API_Interest.Contracts.IPersistance;
+using Microsoft.AspNetCore.Mvc;
+using static System.Net.WebRequestMethods;
 
 namespace Test_API_Interest.TMDB
 {
@@ -26,7 +28,7 @@ namespace Test_API_Interest.TMDB
             _context = dbContext;
         }
 
-    public async Task<GenreList> GetAllGenre()
+        public async Task<GenreList> GetAllGenre()
         {
             string getAllUrl = "/genre/movie/list";
             var response = await _httpClient.GetAsync($"{BaseUrl}{getAllUrl}?api_key={ApiKey}");
@@ -45,7 +47,6 @@ namespace Test_API_Interest.TMDB
         public async Task<GenreList> AddAllGenreToLocalDB()
         {
             var genresFromTMDB = await GetAllGenre();
-            //var myLocalGenreList = new List<Genre>();
 
             if (genresFromTMDB == null)
             {
@@ -58,12 +59,28 @@ namespace Test_API_Interest.TMDB
                 {
                     Title = item.Name
                 };
-                //myLocalGenreList.Add(myLocalGenre);
                 _context.Genres.Add(myLocalGenre);
             }
             _context.SaveChanges();
 
             return genresFromTMDB;
+        }
+
+        public async Task<MovieList> GetMoviesByGenre(int genreId)
+        {
+            string getAllUrl = "/discover/movie";
+            string url = $"{BaseUrl}{getAllUrl}?api_key={ApiKey}&with_genres={genreId}";
+            var response = await _httpClient.GetAsync(url);
+            var content = await response.Content.ReadAsStringAsync();
+            var movieList = JsonConvert.DeserializeObject<MovieList>(content);
+            //var targetGenre = genreList.Genres.FirstOrDefault(g => g.Name.Equals(genre, StringComparison.OrdinalIgnoreCase));
+
+            if (movieList == null)
+            {
+                throw new ArgumentException($"Genre not found.");
+            }
+
+            return movieList;
         }
     }
 

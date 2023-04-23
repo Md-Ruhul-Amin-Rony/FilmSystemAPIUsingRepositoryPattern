@@ -20,9 +20,9 @@ namespace Test_API_Interest
         {
 
             services.AddControllers();
+            services.AddTransient<IPerson, PersonRepository>();
             services.AddTransient<IGenre, GenreRepository>();
             services.AddTransient<IMovie, MovieRepository>();
-            services.AddTransient<IPerson, PersonRepository>();
             services.AddTransient<ITmdbApiClient, TmdbApiClient>();
             //services.AddScoped<DbContext, ApplicationDbContext>();
 

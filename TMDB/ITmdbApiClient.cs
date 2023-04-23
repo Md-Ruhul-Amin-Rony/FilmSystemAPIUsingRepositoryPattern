@@ -7,5 +7,7 @@ namespace Test_API_Interest.TMDB
     {
         Task<GenreList> GetAllGenre();
         Task<GenreList> AddAllGenreToLocalDB();
+        Task<MovieList> GetMoviesByGenre(int genreId);
+
     }
 }

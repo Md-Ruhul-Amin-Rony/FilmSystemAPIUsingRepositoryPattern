@@ -113,5 +113,34 @@ namespace Test_API_Interest.Controllers
             }
             return Ok(ViewModel);
         }
+        [HttpGet("GetMoviesRating/{personId}/{movieId}")]
+        public async Task<ActionResult> GetMovieRating(int personId,int movieId)
+        {
+            var movieRating = _movie.GetMovieRating(personId,movieId);
+            //List<object> ViewModel = new List<object>();
+            //foreach (var per in movies)
+            //{
+            //    var response = new
+            //    {
+            //        MovieId = per.MovieId,
+            //        link = per.Link,
+            //        person = new
+            //        {
+            //            id = per.Person.PersonId,
+            //            name = per.Person.Name,
+            //            email = per.Person.Email
+            //        },
+            //        genre = new
+            //        {
+            //            id = per.Genre.GenreId,
+            //            title = per.Genre.Title,
+            //            description = per.Genre.Description
+            //        }
+            //    };
+
+            //    ViewModel.Add(response);
+            //}
+            return Ok(movieRating);
+        }
     }
 }

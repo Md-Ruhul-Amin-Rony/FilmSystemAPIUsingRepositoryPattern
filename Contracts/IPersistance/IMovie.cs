@@ -8,5 +8,6 @@ namespace Test_API_Interest.Contracts.IPersistance
         List<Movie> GetAllMovies();
         List<Movie> GetAllMoviesByPersonId(int personId);
         List<Movie> GetAllMoviesByGenreId(int genreId);
+        int GetMovieRating(int personId, int movieId);
     }
 }

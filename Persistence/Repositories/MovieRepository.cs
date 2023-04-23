@@ -56,5 +56,19 @@ namespace Test_API_Interest.Persistence.Repositories
                                                  .ToList();
             return allmovies;
         }
+
+        public int GetMovieRating(int personId, int movieId)
+        {
+            var movie = _context.Movies.AsNoTracking()
+                                             
+                                                 .Where(g => g.Person.PersonId == personId && g.MovieId==movieId)
+                                                 .FirstOrDefault();
+
+            if (movie==null)
+            {
+                throw new ArgumentNullException("No movie found");
+            }
+            return movie.Rating;
+        }
     }
 }
