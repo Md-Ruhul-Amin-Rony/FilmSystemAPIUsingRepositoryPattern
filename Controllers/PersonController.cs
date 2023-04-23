@@ -25,12 +25,12 @@ namespace Test_API_Interest.Controllers
             return Ok(addedPersonID);
         }
 
-        [HttpPost("Add/Genre")]
-        public async Task<ActionResult> PersonAddGenre([FromBody] PersonAddGenreCommandRequest model)
-        {
-            _person.AddGenre(model.PersonId, model.Title,model.Description);
-            return Ok();
-        }
+        //[HttpPost("Add/Genre")]
+        //public async Task<ActionResult> PersonAddGenre([FromBody] PersonAddGenreCommandRequest model)
+        //{
+        //    _person.AddGenre(model.PersonId, model.Title,model.Description);
+        //    return Ok();
+        //}
 
         [HttpPost("Add/Movie")]
         public async Task<ActionResult> PersonAddMovie([FromBody] PersonAddMovieLinkCommandRequest model)
