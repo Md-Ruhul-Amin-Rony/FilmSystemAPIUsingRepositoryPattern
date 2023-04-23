@@ -12,7 +12,7 @@ using Test_API_Interest;
 namespace Test_API_Interest.Migrations
 {
     [DbContext(typeof(InterestingDbContext))]
-    [Migration("20230422171056_v-1")]
+    [Migration("20230423191654_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
