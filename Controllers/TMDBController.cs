@@ -31,18 +31,18 @@ namespace Test_API_Interest.Controllers
             return Ok(JsonConvert.SerializeObject(genreList.Result));
         }
 
-        [HttpGet("TMDB/AddAllGenreToLocalDB")]
-        public async Task<ActionResult> AddAllGenreToLocalDB()
-        {
-            var genreList = _tmdbApiClient.AddAllGenreToLocalDB();
+        //[HttpGet("TMDB/AddAllGenreToLocalDB")]
+        //public async Task<ActionResult> AddAllGenreToLocalDB()
+        //{
+        //    var genreList = _tmdbApiClient.AddAllGenreToLocalDB();
 
-            if (genreList == null)
-            {
-                throw new ArgumentException($"Genre not found.");
-            }
+        //    if (genreList == null)
+        //    {
+        //        throw new ArgumentException($"Genre not found.");
+        //    }
 
-            return Ok(JsonConvert.SerializeObject(genreList.Result));
-        }
+        //    return Ok(JsonConvert.SerializeObject(genreList.Result));
+        //}
         [HttpGet("TMDB/GetMoviesByGenreId/{genreId}")]
         public async Task<ActionResult> GetMoviesByGenre( int genreId)
         {
