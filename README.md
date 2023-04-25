@@ -7,9 +7,14 @@ This is a Film System API that allows you to manage people, genres, movies, and 
 ### Entities Relationship:(Genre,Movie,Person)
 The relations between the three classes can be described as follows:
 
-Genre class has a one-to-many relationship with the Movie class. One genre can be associated with many movies, but a movie can only have one genre.
-Movie class has a many-to-one relationship with both the Genre class and Person class. A movie belongs to a single genre and a single person, but a genre and a person can have many movies associated with them.
-Person class has a many-to-many relationship with the Genre class. A person can have many favorite genres, and a genre can be associated with many persons. This is achieved through the use of a junction table which holds the foreign keys of both the Person and Genre tables. Similarly, Person class has a one-to-many relationship with the Movie class as a person can have many movies, but a movie can only belong to one person.
+*Genre class: has a one-to-many relationship with the Movie class. One genre can be associated with many movies, but a movie can only have one genre.
+
+*Movie class: has a many-to-one relationship with both the Genre class and Person class. 
+A movie belongs to a single genre and a single person, but a genre and a person can have many movies associated with them.
+
+*Person class: has a many-to-many relationship with the Genre class. A person can have many favorite genres, and a genre can be associated with many persons. 
+This is achieved through the use of a junction table which holds the foreign keys of both the Person and Genre tables.
+Similarly, Person class has a one-to-many relationship with the Movie class as a person can have many movies, but a movie can only belong to one person.
 
 # Endpoints.
 
