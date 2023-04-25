@@ -7,13 +7,13 @@ namespace Test_API_Interest.DataDomain.Entities
     public class Movie
     {
 
-        //[Key]
+       
         public int MovieId { get; set; }
         public int GenreId { get; set; }
         public int PersonId { get; set; }
         public string Link { get; set; }
-        //[Range(1,10)]
-        private int RatingCheck;
+        
+        
         [Range(1, 10)]
         public int?  Rating 
         {
