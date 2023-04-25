@@ -14,7 +14,7 @@ Endpoint: https://localhost:7146/Person/GetAllPeople
 Example Response:
 ### Example Response
 
-```json
+```
 [
   {
     "personId": 5,
@@ -26,7 +26,8 @@ Example Response:
     "name": "Kristian",
     "email": "kristian@chas.se"
   }
-]json```
+]
+```
 
 ###  (Get) all genres associated with a specific person.
 Get all genres associated with a specific person. (Need to do Add Person & Add Genre and AddToNewGenre(Person) first, then you can run this function).
