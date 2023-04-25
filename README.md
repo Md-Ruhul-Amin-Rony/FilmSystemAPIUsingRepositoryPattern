@@ -138,7 +138,13 @@ Endpoint: https://localhost:7146/TMDB/TMDB/GetMoviesByGenreId/{GenreId}
 
 Example:
 ```
-{"results":[{"id":502356,"title":"The Super Mario Bros. Movie","overview":"While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.","poster_path":"/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg","release_date":"2023-04-05T00:00:00","vote_average":7.5}```
+{"results":[{"id":502356,"title":"The Super Mario Bros. Movie",
+"overview":"While working underground to fix a water main, 
+Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world.
+But when the brothers are separated,
+Mario embarks on an epic quest to find Luigi.
+","poster_path":"/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg","release_date":"2023-04-05T00:00:00","vote_average":7.5}
+```
 
 
 
