@@ -2,6 +2,8 @@
 ### This Film System API made by using REST architecture and this API is built using MVC pattern.
 This is a Film System API that allows you to manage people, genres, movies, and movie ratings. 
 
+## I have used Repository Pattern to make this project.
+
 ### Entities Relationship:(Genre,Movie,Person)
 The relations between the three classes can be described as follows:
 
