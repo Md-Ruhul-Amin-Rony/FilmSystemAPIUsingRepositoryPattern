@@ -36,8 +36,7 @@ HTTP method: GET
 Endpoint: https://localhost:7146/Genre/GetAllGenreByPersonID/{personId}
 
 Example Response:
-
-
+```
 {
   "personId": 1,
   "name": "Ruhul Amin",
@@ -55,6 +54,7 @@ Example Response:
     }   
   ]
 }
+``` 
 ###  Download all videos associated with a specific person.
 Download all videos associated with a specific person. (Need to add a person, genre, and movie first, then you can run this function).
 
@@ -62,7 +62,7 @@ HTTP method: GET
 Endpoint: https://localhost:7146/Movie/GetAllMoviesByPersonId/{personId}
 
 Example Response:
-
+```
 [
   {
     "movieId": 1,
@@ -73,6 +73,7 @@ Example Response:
     "link": "https://www.themoviedb.org/movie/842945-supercell"
   }
 ]
+```
 ###  Enter and retrieve "rating" on films linked to a person.
 Enter and retrieve "rating" on films linked to a person. (Need to add a person, genre, movie, and movie rating first using POST method, then you can run this function).
 
@@ -80,7 +81,7 @@ HTTP method: POST (to create a new rating) or GET (to retrieve an existing ratin
 Endpoint POST: https://localhost:7146/Person/Add/MovieRatings{personId}{movieId}{rating}
 
 Example Request:
-
+```
 {
   "personId": 2,
   "movieId": 4,
@@ -101,32 +102,41 @@ Example Response:
     "rating": 7
   }
 ]
+```
 
 ### Connect a person to a new genre
 HTTP method: POST
 Endpoint: https://localhost:7146/Person/AddToNewGenre{PersonId}{GenreID}
 
-Example: You need to give PersonId and GenreId to connect a person to a new Genre t.ex: '{
+Example: You need to give PersonId and GenreId to connect a person to a new Genre t.ex: 
+```
+'{
   "personId": 5,
   "genreId": 3
 }'
-
+```
 
 ## Posting new links for a specific person and a specific genre
 HTTP method: POST
 Endpoint:https://localhost:7146/Movie/Add{PersonId}{GenreId}{link}
 
-Example:"personId": 5,
+Example:
+```
+{
+"personId": 5,
   "genreId": 4,
   "link": "Batman.se"
+}
+```
 
-
-Get suggestions for movies in a certain genre from an external API, eg TMDB
+## Get suggestions for movies in a certain genre from an external API, eg TMDB
 —For this you can use TMDB/GetAllGenres EndPoint to see the GenreId and then use that GenreId to get Movie Suggestions from TMDB
 HTTP method: GET
 Endpoint: https://localhost:7146/TMDB/TMDB/GetMoviesByGenreId/{GenreId}
 
-Example: {"results":[{"id":502356,"title":"The Super Mario Bros. Movie","overview":"While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.","poster_path":"/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg","release_date":"2023-04-05T00:00:00","vote_average":7.5}
+Example:
+```
+{"results":[{"id":502356,"title":"The Super Mario Bros. Movie","overview":"While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.","poster_path":"/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg","release_date":"2023-04-05T00:00:00","vote_average":7.5}```
 
 
 
