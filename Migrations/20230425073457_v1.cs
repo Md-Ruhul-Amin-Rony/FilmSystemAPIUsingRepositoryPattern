@@ -69,7 +69,7 @@ namespace Test_API_Interest.Migrations
                     GenreId = table.Column<int>(type: "int", nullable: false),
                     PersonId = table.Column<int>(type: "int", nullable: false),
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rating = table.Column<int>(type: "int", maxLength: 10, nullable: false)
+                    Rating = table.Column<int>(type: "int", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {

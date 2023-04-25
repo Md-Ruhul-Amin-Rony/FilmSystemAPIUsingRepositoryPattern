@@ -15,7 +15,7 @@ namespace Test_API_Interest.DataDomain.Entities
         //[Range(1,10)]
         private int RatingCheck;
         [Range(1, 10)]
-        public int  Rating 
+        public int?  Rating 
         {
             get; set;
             //get { return RatingCheck; }

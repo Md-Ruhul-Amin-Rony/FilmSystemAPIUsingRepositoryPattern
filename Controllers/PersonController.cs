@@ -51,32 +51,33 @@ namespace Test_API_Interest.Controllers
                     PersonId = per.PersonId,
                    name = per.Name,
                    email = per.Email,
-                    genres = new List<dynamic>(),
-                    movies = new List<dynamic>()
+                   // genres = new List<dynamic>(),
+                    //movies = new List<dynamic>()
                 };
-                foreach (var item in per.Genres)
-                {
-                    response.genres.Add(new
-                    {
-                        id = item.GenreId,
-                        title= item.Title,
-                        description = item.Description,
-                    });
-                }
-                foreach (var item in per.Movies)
-                {
-                    response.movies.Add(new
-                    {
-                        id = item.MovieId,
-                        link = item.Link,
-                        ratings = item.Rating
-                    });
-                }
+                //foreach (var item in per.Genres)
+                //{
+                //    response.genres.Add(new
+                //    {
+                //        id = item.GenreId,
+                //        title= item.Title,
+                //        description = item.Description,
+                //    });
+                //}
+                //foreach (var item in per.Movies)
+                //{
+                //    response.movies.Add(new
+                //    {
+                //        id = item.MovieId,
+                //        link = item.Link,
+                //        ratings = item.Rating
+                //    });
+                //}
 
                 ViewModel.Add(response);
                 
             }
             return Ok(ViewModel);
+            
         }
 
         [HttpPost("AddToNewGenre")]

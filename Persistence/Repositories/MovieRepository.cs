@@ -68,7 +68,7 @@ namespace Test_API_Interest.Persistence.Repositories
             {
                 throw new ArgumentNullException("No movie found");
             }
-            return movie.Rating;
+            return (int)movie.Rating;
         }
     }
 }
