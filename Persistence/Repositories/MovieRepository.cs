@@ -56,13 +56,27 @@ namespace Test_API_Interest.Persistence.Repositories
                                                  .ToList();
             return allmovies;
         }
-
+        public List<Movie> GetAllRatingssByPersonId(int personId)
+        {
+            var allmovies = _context.Movies.AsNoTracking()
+                                             .Include(i => i.Person)
+                                             .Include(i => i.Genre)
+                                                 .Where(g => g.Person.PersonId == personId)
+                                                 .ToList();
+            return allmovies;
+        }
         public int GetMovieRating(int personId, int movieId)
+            //public int GetMovieRating(int personId)
+
         {
             var movie = _context.Movies.AsNoTracking()
-                                             
-                                                 .Where(g => g.Person.PersonId == personId && g.MovieId==movieId)
+                                                //.Include(i=>i.mo)
+
+                                                 .Where(g => g.Person.PersonId == personId && g.MovieId == movieId)
                                                  .FirstOrDefault();
+            // .Where(g => g.Person.PersonId == personId )
+            // .ToList();
+            //// .FirstOrDefault();
 
             if (movie==null)
             {
