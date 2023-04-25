@@ -89,7 +89,7 @@ Example Request:
 }
 ```
 
-### Endpoint GET: https://localhost:7146/Movie/GetAllRatingsByPersonId/{personId}1
+### Endpoint GET: https://localhost:7146/Movie/GetAllRatingsByPersonId/{personId}
 Example Response:
 ```
 [
