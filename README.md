@@ -2,9 +2,9 @@
 ### This Film System API made by using REST architecture and this API is built using MVC pattern.
 This is a Film System API that allows you to manage people, genres, movies, and movie ratings. 
 
-# Endpoints
+# Endpoints.
 
-# Get all people in the system.
+###  (Get) all people in the system.
 
 Get all people in the system. (Need to add a person first, then you can run this function).
 
@@ -12,8 +12,9 @@ HTTP method: GET
 Endpoint: https://localhost:7146/Person/GetAllPeople
 
 Example Response:
+### Example Response
 
-
+```json
 [
   {
     "personId": 5,
@@ -26,7 +27,7 @@ Example Response:
     "email": "kristian@chas.se"
   }
 ]
-### Get all genres associated with a specific person
+###  (Get) all genres associated with a specific person.
 Get all genres associated with a specific person. (Need to do Add Person & Add Genre and AddToNewGenre(Person) first, then you can run this function).
 
 HTTP method: GET
@@ -52,7 +53,7 @@ Example Response:
     }   
   ]
 }
-### Download all videos associated with a specific person
+###  Download all videos associated with a specific person.
 Download all videos associated with a specific person. (Need to add a person, genre, and movie first, then you can run this function).
 
 HTTP method: GET
@@ -70,7 +71,7 @@ Example Response:
     "link": "https://www.themoviedb.org/movie/842945-supercell"
   }
 ]
-### Enter and retrieve "rating" on films linked to a person
+###  Enter and retrieve "rating" on films linked to a person.
 Enter and retrieve "rating" on films linked to a person. (Need to add a person, genre, movie, and movie rating first using POST method, then you can run this function).
 
 HTTP method: POST (to create a new rating) or GET (to retrieve an existing rating)
