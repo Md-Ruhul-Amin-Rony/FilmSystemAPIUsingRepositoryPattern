@@ -87,9 +87,11 @@ Example Request:
   "movieId": 4,
   "rating": 9
 }
+```
 
-Endpoint GET: https://localhost:7146/Movie/GetAllRatingsByPersonId/{personId}1
+### Endpoint GET: https://localhost:7146/Movie/GetAllRatingsByPersonId/{personId}1
 Example Response:
+```
 [
   {
     "movieId": 1,
