@@ -10,12 +10,12 @@ The relations between the three classes can be described as follows:
 *Genre class: has a one-to-many relationship with the Movie class. One genre can be associated with many movies, but a movie can only have one genre.
 
 *Movie class: has a many-to-one relationship with both the Genre class and Person class. 
-A movie belongs to a single genre and a single person, but a genre and a person can have many movies associated with them.
+A movie belongs to a single genre and many person, but a genre and a person can have many movies associated with them.
 
 *Person class: has a many-to-many relationship with the Genre class. A person can have many favorite genres, and a genre can be associated with many persons. 
 This is achieved through the use of a junction table which holds the foreign keys of both the Person and Genre tables.
-Similarly, Person class has a one-to-many relationship with the Movie class as a person can have many movies, but a movie can only belong to one person.
-
+Similarly, Person class has a many-to-many relationship with the Movie class as a person can have many movies, but many movies can only belong to one person.
+This is achieved through the use of a junction table which holds the foreign keys of both the Person and Movie tables.
 # Endpoints.
 
 ###  (Get) all people in the system.
@@ -146,7 +146,7 @@ Example:
 ```
 
 ## Get suggestions for movies in a certain genre from an external API, eg TMDB
-—For this you can use TMDB/GetAllGenres EndPoint to see the GenreId and then use that GenreId to get Movie Suggestions from TMDB
+â€”For this you can use TMDB/GetAllGenres EndPoint to see the GenreId and then use that GenreId to get Movie Suggestions from TMDB
 HTTP method: GET
 Endpoint: https://localhost:7146/TMDB/TMDB/GetMoviesByGenreId/{GenreId}
 
@@ -154,7 +154,7 @@ Example:
 ```
 {"results":[{"id":502356,"title":"The Super Mario Bros. Movie",
 "overview":"While working underground to fix a water main, 
-Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world.
+Brooklyn plumbersâ€”and brothersâ€”Mario and Luigi are transported down a mysterious pipe and wander into a magical new world.
 But when the brothers are separated,
 Mario embarks on an epic quest to find Luigi.
 ","poster_path":"/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg","release_date":"2023-04-05T00:00:00","vote_average":7.5}
