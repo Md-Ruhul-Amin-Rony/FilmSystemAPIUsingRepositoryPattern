@@ -65,12 +65,7 @@ namespace Test_API_Interest.Controllers
                 {
                     MovieId = per.MovieId,
                     link = per.Link,
-                    person = new
-                    {
-                        id = per.Person.PersonId,
-                        name = per.Person.Name,
-                        email = per.Person.Email
-                    },
+                    person = new List<object>(),
                     genre = new
                     {
                         id = per.Genre.GenreId,
@@ -78,6 +73,10 @@ namespace Test_API_Interest.Controllers
                         description = per.Genre.Description
                     }
                 };
+                foreach (var item in per.Persons)
+                {
+                    response.person.Add(item);
+                }
 
                 ViewModel.Add(response);
             }
@@ -95,12 +94,7 @@ namespace Test_API_Interest.Controllers
                 {
                     MovieId = per.MovieId,
                     link = per.Link,
-                    person = new
-                    {
-                        id = per.Person.PersonId,
-                        name = per.Person.Name,
-                        email = per.Person.Email
-                    },
+                    person = new List<object>(),
                     genre = new
                     {
                         id = per.Genre.GenreId,
@@ -109,6 +103,10 @@ namespace Test_API_Interest.Controllers
                     }
                 };
 
+                foreach (var item in per.Persons)
+                {
+                    response.person.Add(item);
+                }
                 ViewModel.Add(response);
             }
             return Ok(ViewModel);

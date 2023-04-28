@@ -6,7 +6,10 @@ namespace Test_API_Interest.DataDomain.Entities
 {
     public class Movie
     {
-
+        public Movie()
+        {
+            Persons = new HashSet<Person>();    
+        }
        
         public int MovieId { get; set; }
         public int GenreId { get; set; }
@@ -27,7 +30,7 @@ namespace Test_API_Interest.DataDomain.Entities
             //}
         }
         //[ForeignKey("PersonId")]
-        public virtual Person Person { get; set; }
+        public virtual ICollection<Person> Persons { get; set; }
         //[ForeignKey("GenreId")]
         public virtual Genre  Genre { get; set; }
 

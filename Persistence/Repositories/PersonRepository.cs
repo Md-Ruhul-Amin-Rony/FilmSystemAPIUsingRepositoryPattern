@@ -43,9 +43,9 @@ namespace Test_API_Interest.Persistence.Repositories
             var movie = new Movie
             {
                 Link = link,
-                Person = person,
                 Genre = genre
             };
+            movie.Persons.Add(person);
             person.Movies.Add(movie);
             _context.SaveChanges();
         }
@@ -76,7 +76,7 @@ namespace Test_API_Interest.Persistence.Repositories
         public Person SetMovieRatings(int perId, int movId, int rating)
         {
             var movie = _context.Movies.AsNoTracking()
-                              .Include(i => i.Person)
+                              .Include(i => i.Persons)
                                   .Where(g => g.MovieId == movId && g.PersonId == perId)
                                   .FirstOrDefault();
             if (movie is not null)
@@ -85,14 +85,9 @@ namespace Test_API_Interest.Persistence.Repositories
             _context.Movies.Update(movie);
             _context.SaveChanges();
 
-            //var person = _context.People.AsNoTracking()
-            //                     .Include(i => i.Genres)
-            //                     .Include(i => i.Movies)
-            //                     .Where(p => p.PersonId == movie.PersonId)
-            //                     .FirstOrDefault();
-            
-
-            return movie.Person;
+            var person = movie.Persons.Where(p => p.PersonId == perId)
+                                 .FirstOrDefault();
+            return person;
         }
 
         public Person GetPersonByID(int personId)

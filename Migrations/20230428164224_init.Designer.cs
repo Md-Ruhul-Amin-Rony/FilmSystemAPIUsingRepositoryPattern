@@ -12,8 +12,8 @@ using Test_API_Interest;
 namespace Test_API_Interest.Migrations
 {
     [DbContext(typeof(InterestingDbContext))]
-    [Migration("20230425073457_v1")]
-    partial class v1
+    [Migration("20230428164224_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,21 @@ namespace Test_API_Interest.Migrations
                     b.HasIndex("PersonsPersonId");
 
                     b.ToTable("GenrePerson");
+                });
+
+            modelBuilder.Entity("MoviePerson", b =>
+                {
+                    b.Property<int>("MoviesMovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonsPersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MoviesMovieId", "PersonsPersonId");
+
+                    b.HasIndex("PersonsPersonId");
+
+                    b.ToTable("MoviePerson");
                 });
 
             modelBuilder.Entity("Test_API_Interest.DataDomain.Entities.Genre", b =>
@@ -90,8 +105,6 @@ namespace Test_API_Interest.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("PersonId");
-
                     b.ToTable("Movie", (string)null);
                 });
 
@@ -133,6 +146,21 @@ namespace Test_API_Interest.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MoviePerson", b =>
+                {
+                    b.HasOne("Test_API_Interest.DataDomain.Entities.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesMovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Test_API_Interest.DataDomain.Entities.Person", null)
+                        .WithMany()
+                        .HasForeignKey("PersonsPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Test_API_Interest.DataDomain.Entities.Movie", b =>
                 {
                     b.HasOne("Test_API_Interest.DataDomain.Entities.Genre", "Genre")
@@ -141,23 +169,10 @@ namespace Test_API_Interest.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Test_API_Interest.DataDomain.Entities.Person", "Person")
-                        .WithMany("Movies")
-                        .HasForeignKey("PersonId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Movies_Person");
-
                     b.Navigation("Genre");
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Test_API_Interest.DataDomain.Entities.Genre", b =>
-                {
-                    b.Navigation("Movies");
-                });
-
-            modelBuilder.Entity("Test_API_Interest.DataDomain.Entities.Person", b =>
                 {
                     b.Navigation("Movies");
                 });

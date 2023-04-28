@@ -85,11 +85,11 @@ namespace Test_API_Interest
                       .HasColumnName("Rating")
                       .HasMaxLength(10);
 
-                entity.HasOne(e => e.Person)
-                      .WithMany(w => w.Movies)
-                      .HasForeignKey(d => d.PersonId)
-                      .OnDelete(DeleteBehavior.ClientSetNull)
-                      .HasConstraintName("FK_Movies_Person");
+                //entity.HasOne(e => e.Person)
+                //      .WithMany(w => w.Movies)
+                //      .HasForeignKey(d => d.PersonId)
+                //      .OnDelete(DeleteBehavior.ClientSetNull)
+                //      .HasConstraintName("FK_Movies_Person");
             });
 
            // modelBuilder.Entity<Genre>()

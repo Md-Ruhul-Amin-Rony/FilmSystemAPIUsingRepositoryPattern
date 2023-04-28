@@ -20,9 +20,9 @@ namespace Test_API_Interest.Persistence.Repositories
             var movie = new Movie
             {
                 Link = link,
-                Person = person,
                 Genre = genre
             };
+            movie.Persons.Add(person);
             _context.Movies.Add(movie);
             _context.SaveChanges();
             return movie.MovieId;
@@ -31,7 +31,7 @@ namespace Test_API_Interest.Persistence.Repositories
         public List<Movie> GetAllMovies()
         {
             var allmovies = _context.Movies.AsNoTracking()
-                                 .Include(i => i.Person)
+                                 .Include(i => i.Persons)
                                  .Include(i => i.Genre)
                                   .ToList();
             return allmovies;
@@ -40,7 +40,7 @@ namespace Test_API_Interest.Persistence.Repositories
         public List<Movie> GetAllMoviesByGenreId(int genreId)
         {
             var allmovies = _context.Movies.AsNoTracking()
-                                 .Include(i => i.Person)
+                                 .Include(i => i.Persons)
                                  .Include(i => i.Genre)
                                      .Where(g => g.Genre.GenreId == genreId)
                                      .ToList();
@@ -50,39 +50,70 @@ namespace Test_API_Interest.Persistence.Repositories
         public List<Movie> GetAllMoviesByPersonId(int personId)
         {
             var allmovies = _context.Movies.AsNoTracking()
-                                             .Include(i => i.Person)
+                                             .Include(i => i.Persons)
                                              .Include(i => i.Genre)
-                                                 .Where(g => g.Person.PersonId == personId)
+                                                 //.Where(g => g.Person.PersonId == personId)
                                                  .ToList();
             return allmovies;
         }
         public List<Movie> GetAllRatingssByPersonId(int personId)
         {
+            var personMovies = new List<Movie>();
             var allmovies = _context.Movies.AsNoTracking()
-                                             .Include(i => i.Person)
+                                             .Include(i => i.Persons)
                                              .Include(i => i.Genre)
-                                                 .Where(g => g.Person.PersonId == personId)
+                                                 //.Where(g => g.Persons.Where(p => p.PersonId == personId).Select(x=> x))
                                                  .ToList();
-            return allmovies;
+
+
+            foreach (var item in allmovies)
+            {
+                foreach (var p in item.Persons.ToList())
+                {
+                    if (p.PersonId == personId)
+                    {
+                        personMovies.Add(item);
+                    }
+                }
+
+            }
+            return personMovies;
         }
         public int GetMovieRating(int personId, int movieId)
             //public int GetMovieRating(int personId)
 
         {
-            var movie = _context.Movies.AsNoTracking()
+            var rat = 0;
+            var movies = _context.Movies.AsNoTracking()
                                                 //.Include(i=>i.mo)
+                                                .Include(x => x.Persons)
+                                                .ToList();
 
-                                                 .Where(g => g.Person.PersonId == personId && g.MovieId == movieId)
-                                                 .FirstOrDefault();
+            if (movies == null)
+            {
+                throw new ArgumentNullException("No movie found");
+            }
+
+            foreach (var item in movies)
+            {
+                if (item.MovieId == movieId)
+                {
+                    foreach (var p in item.Persons.ToList())
+                    {
+                        if (p.PersonId == personId)
+                        {
+                            rat = (int)item.Rating;
+                        }
+                    }
+                }
+ 
+            }
             // .Where(g => g.Person.PersonId == personId )
             // .ToList();
             //// .FirstOrDefault();
 
-            if (movie==null)
-            {
-                throw new ArgumentNullException("No movie found");
-            }
-            return (int)movie.Rating;
+    
+            return rat;
         }
     }
 }

@@ -4,7 +4,7 @@
 
 namespace Test_API_Interest.Migrations
 {
-    public partial class v1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,28 @@ namespace Test_API_Interest.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Movie",
+                columns: table => new
+                {
+                    MovieId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GenreId = table.Column<int>(type: "int", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<int>(type: "int", maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieId", x => x.MovieId);
+                    table.ForeignKey(
+                        name: "FK_Movie_Genre_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genre",
+                        principalColumn: "GenreId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GenrePerson",
                 columns: table => new
                 {
@@ -61,30 +83,27 @@ namespace Test_API_Interest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movie",
+                name: "MoviePerson",
                 columns: table => new
                 {
-                    MovieId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GenreId = table.Column<int>(type: "int", nullable: false),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rating = table.Column<int>(type: "int", maxLength: 10, nullable: true)
+                    MoviesMovieId = table.Column<int>(type: "int", nullable: false),
+                    PersonsPersonId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieId", x => x.MovieId);
+                    table.PrimaryKey("PK_MoviePerson", x => new { x.MoviesMovieId, x.PersonsPersonId });
                     table.ForeignKey(
-                        name: "FK_Movie_Genre_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genre",
-                        principalColumn: "GenreId",
+                        name: "FK_MoviePerson_Movie_MoviesMovieId",
+                        column: x => x.MoviesMovieId,
+                        principalTable: "Movie",
+                        principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Person",
-                        column: x => x.PersonId,
+                        name: "FK_MoviePerson_Person_PersonsPersonId",
+                        column: x => x.PersonsPersonId,
                         principalTable: "Person",
-                        principalColumn: "PersonId");
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -98,9 +117,9 @@ namespace Test_API_Interest.Migrations
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movie_PersonId",
-                table: "Movie",
-                column: "PersonId");
+                name: "IX_MoviePerson_PersonsPersonId",
+                table: "MoviePerson",
+                column: "PersonsPersonId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -109,13 +128,16 @@ namespace Test_API_Interest.Migrations
                 name: "GenrePerson");
 
             migrationBuilder.DropTable(
+                name: "MoviePerson");
+
+            migrationBuilder.DropTable(
                 name: "Movie");
 
             migrationBuilder.DropTable(
-                name: "Genre");
+                name: "Person");
 
             migrationBuilder.DropTable(
-                name: "Person");
+                name: "Genre");
         }
     }
 }
