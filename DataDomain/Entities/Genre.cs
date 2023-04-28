@@ -6,7 +6,7 @@ namespace Test_API_Interest.DataDomain.Entities
 {
     public class Genre
     {
-        public Genre()
+        public Genre()// To prevent NullReferenceException and a good practice
         {
             Movies = new HashSet<Movie>();
             Persons= new HashSet<Person>();

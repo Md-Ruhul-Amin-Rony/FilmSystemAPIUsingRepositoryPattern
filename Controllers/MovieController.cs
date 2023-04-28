@@ -20,8 +20,8 @@ namespace Test_API_Interest.Controllers
         [HttpPost("Add")]
         public async Task<ActionResult> AddMovieLink([FromBody] AddMovieLinkWithGenreAndPersonCommandRequest model)
         {
-            var addedGenre = _movie.AddMovieLink(model.GenreId, model.PersonId, model.Link);
-            return Ok(addedGenre);
+            var addedMovie = _movie.AddMovieLink(model.GenreId, model.PersonId, model.Link);
+            return Ok(addedMovie);
         }
 
         [HttpGet("GetAllMoviesByPersonId/{personId}")]
