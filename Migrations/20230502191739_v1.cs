@@ -4,7 +4,7 @@
 
 namespace Test_API_Interest.Migrations
 {
-    public partial class init : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

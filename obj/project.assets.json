@@ -2275,11 +2275,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\Test-API-Interest\\Test-API-Interest.csproj",
+      "projectUniqueName": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\FilmSystemAPIUsingRepositoryPattern\\Test-API-Interest.csproj",
       "projectName": "Test-API-Interest",
-      "projectPath": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\Test-API-Interest\\Test-API-Interest.csproj",
+      "projectPath": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\FilmSystemAPIUsingRepositoryPattern\\Test-API-Interest.csproj",
       "packagesPath": "C:\\Users\\adiar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\Test-API-Interest\\obj\\",
+      "outputPath": "C:\\Users\\adiar\\OneDrive\\Desktop\\iths\\ithsclass\\FilmSystemAPIUsingRepositoryPattern\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\adiar\\AppData\\Roaming\\NuGet\\NuGet.Config",

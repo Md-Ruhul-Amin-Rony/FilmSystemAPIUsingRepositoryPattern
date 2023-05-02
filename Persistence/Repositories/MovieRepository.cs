@@ -52,7 +52,8 @@ namespace Test_API_Interest.Persistence.Repositories
             var allmovies = _context.Movies.AsNoTracking()
                                              .Include(i => i.Persons)
                                              .Include(i => i.Genre)
-                                                 //.Where(g => g.Person.PersonId == personId)
+                                             .Where(m => m.Persons.Any(p => p.PersonId == personId))
+                                                 // .Where(g => g.Person.PersonId == personId)
                                                  .ToList();
             return allmovies;
         }

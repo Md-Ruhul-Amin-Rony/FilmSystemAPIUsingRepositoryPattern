@@ -12,8 +12,8 @@ using Test_API_Interest;
 namespace Test_API_Interest.Migrations
 {
     [DbContext(typeof(InterestingDbContext))]
-    [Migration("20230428164224_init")]
-    partial class init
+    [Migration("20230502191739_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
