@@ -78,35 +78,35 @@ namespace Test_API_Interest.Controllers
                     GenreId = per.GenreId,
                     title = per.Title,
                     description = per.Description,
-                    person = new List<dynamic>(),
+                    //person = new List<dynamic>(),
 
                     //{
                     //    id = per.Person.PersonId,
                     //    name = per.Person.Name,
                     //    email = per.Person.Email
                     //},
-                    movies = new List<dynamic>()
+                    //movies = new List<dynamic>()
                 };
-                foreach (var item in per.Persons)
-                {
-                    response.person.Add(new
-                    {
-                        id = item.PersonId,
-                        name = item.Name,
-                        email = item.Email
-                    }
-                        );
+                //foreach (var item in per.Persons)
+                //{
+                //    response.person.Add(new
+                //    {
+                //        id = item.PersonId,
+                //        name = item.Name,
+                //        email = item.Email
+                //    }
+                //        );
 
-                }
+                //}
 
-                foreach (var item in per.Movies)
-                {
-                    response.movies.Add(new
-                    {
-                        id = item.MovieId,
-                        link = item.Link
-                    });
-                }
+                //foreach (var item in per.Movies)
+                //{
+                //    response.movies.Add(new
+                //    {
+                //        id = item.MovieId,
+                //        link = item.Link
+                //    });
+                //}
 
                 ViewModel.Add(response);
             }
