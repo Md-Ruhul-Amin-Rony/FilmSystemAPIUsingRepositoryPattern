@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Test_API_Interest.Contracts.IPersistance;
 using Test_API_Interest.DataDomain.Entities;
+
 
 namespace Test_API_Interest.Persistence.Repositories
 {
@@ -73,22 +75,48 @@ namespace Test_API_Interest.Persistence.Repositories
 
         }
 
+        //public Person SetMovieRatings(int perId, int movId, int rating)
+        //{
+        //    var movie = _context.Movies.AsNoTracking()
+        //                      .Include(i => i.Persons)
+        //                          .Where(g => g.MovieId == movId && g.PersonId == perId)
+        //                          .FirstOrDefault();
+        //    if (movie is not null)
+        //        movie.Rating = rating;
+
+        //    _context.Movies.Update(movie);
+        //    _context.SaveChanges();
+
+        //    var person = movie.Persons.Where(p => p.PersonId == perId)
+        //                         .FirstOrDefault();
+        //    return person;
+        //}
+
+
+
         public Person SetMovieRatings(int perId, int movId, int rating)
         {
-            var movie = _context.Movies.AsNoTracking()
-                              .Include(i => i.Persons)
-                                  .Where(g => g.MovieId == movId && g.PersonId == perId)
-                                  .FirstOrDefault();
-            if (movie is not null)
-                 movie.Rating = rating;
+            var movie = _context.Movies
+                .Include(m => m.Persons)
+                .FirstOrDefault(m => m.MovieId == movId && m.Persons.Any(p => p.PersonId == perId));
 
-            _context.Movies.Update(movie);
+            if (movie == null)
+            {
+                throw new ArgumentException($"Movie with ID {movId} does not belong to person with ID {perId}");
+            }
+
+            movie.Rating = rating;
             _context.SaveChanges();
 
-            var person = movie.Persons.Where(p => p.PersonId == perId)
-                                 .FirstOrDefault();
+            var person = movie.Persons.FirstOrDefault(p => p.PersonId == perId);
             return person;
         }
+
+
+
+
+
+
 
         public Person GetPersonByID(int personId)
         {
