@@ -62,7 +62,8 @@ namespace Test_API_Interest.Persistence.Repositories
             return allPersonal;
         }
 
-        public void AddToNewGenre(int personId, int genreId)
+        // public void AddToNewGenre(int personId, int genreId)
+        public int AddToNewGenre(int personId, int genreId)
         {
             var genre = _context.Genres.Where(g => g.GenreId == genreId).FirstOrDefault();
             var person = _context.People.Where(p => p.PersonId == personId).FirstOrDefault();
@@ -72,6 +73,7 @@ namespace Test_API_Interest.Persistence.Repositories
 
             //_context.People.Update(person);
             _context.SaveChanges();
+            return person.PersonId;
 
         }
 

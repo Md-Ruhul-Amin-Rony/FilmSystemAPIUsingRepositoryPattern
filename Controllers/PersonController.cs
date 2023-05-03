@@ -83,8 +83,12 @@ namespace Test_API_Interest.Controllers
         [HttpPost("AddToNewGenre")]
         public async Task<ActionResult> AddToNewGenre([FromBody] AddToNewGenreCommandRequest model)
         {
-            _person.AddToNewGenre( model.PersonId, model.GenreId);
-            return Ok();
+            //_person.AddToNewGenre( model.PersonId, model.GenreId);
+            //return Ok();
+
+            var addedGenre = _person.AddToNewGenre(model.PersonId, model.GenreId);
+           
+            return Ok(addedGenre);
         }
 
         //[HttpGet("Get/Person/{personId}")]
