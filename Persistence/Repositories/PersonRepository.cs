@@ -118,16 +118,16 @@ namespace Test_API_Interest.Persistence.Repositories
 
 
 
-        public Person GetPersonByID(int personId)
-        {
-            var person = _context.People.AsNoTracking()
-                                 .Include(i => i.Genres)
-                                 .Include(i => i.Movies)
-                                 .Where(p => p.PersonId == personId)
-                                 .FirstOrDefault() ;
+        //public Person GetPersonByID(int personId)
+        //{
+        //    var person = _context.People.AsNoTracking()
+        //                         .Include(i => i.Genres)
+        //                         .Include(i => i.Movies)
+        //                         .Where(p => p.PersonId == personId)
+        //                         .FirstOrDefault() ;
 
-            return person;
+        //    return person;
                                
-        }
+        //}
     }
 }

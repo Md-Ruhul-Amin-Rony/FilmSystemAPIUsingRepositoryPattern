@@ -10,7 +10,7 @@ namespace Test_API_Interest.Contracts.IPersistance
         List<Person> GetAllPersons();
         void AddToNewGenre(int personId,int genreId);
          
-        Person GetPersonByID(int personId);
+       // Person GetPersonByID(int personId);
 
         Person SetMovieRatings(int perId, int moId, int rating);
     }

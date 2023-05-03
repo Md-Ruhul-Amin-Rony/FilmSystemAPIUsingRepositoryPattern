@@ -87,42 +87,42 @@ namespace Test_API_Interest.Controllers
             return Ok();
         }
 
-        [HttpGet("Get/Person/{personId}")]
-        public async Task<ActionResult> GetPersonById( int personId)
-        {
-           var per = _person.GetPersonByID(personId);
+        //[HttpGet("Get/Person/{personId}")]
+        //public async Task<ActionResult> GetPersonById( int personId)
+        //{
+        //   var per = _person.GetPersonByID(personId);
 
-            //object ViewModel = new object();
+        //    //object ViewModel = new object();
       
-                var response = new
-                {
-                    PersonId = per.PersonId,
-                    name = per.Name,
-                    email = per.Email,
-                    genres = new List<dynamic>(),
-                    movies = new List<dynamic>()
-                };
-                foreach (var item in per.Genres)
-                {
-                    response.genres.Add(new
-                    {
-                        id = item.GenreId,
-                        title = item.Title,
-                        description = item.Description,
-                    });
-                }
-                foreach (var item in per.Movies)
-                {
-                    response.movies.Add(new
-                    {
-                        id = item.MovieId,
-                        link = item.Link,
-                        ratings = item.Rating
-                    });
-                }
+        //        var response = new
+        //        {
+        //            PersonId = per.PersonId,
+        //            name = per.Name,
+        //            email = per.Email,
+        //            genres = new List<dynamic>(),
+        //            movies = new List<dynamic>()
+        //        };
+        //        foreach (var item in per.Genres)
+        //        {
+        //            response.genres.Add(new
+        //            {
+        //                id = item.GenreId,
+        //                title = item.Title,
+        //                description = item.Description,
+        //            });
+        //        }
+        //        foreach (var item in per.Movies)
+        //        {
+        //            response.movies.Add(new
+        //            {
+        //                id = item.MovieId,
+        //                link = item.Link,
+        //                ratings = item.Rating
+        //            });
+        //        }
             
-            return Ok(response);
-        }
+        //    return Ok(response);
+        //}
 
         [HttpPost("Add/MovieRatings")]
         public async Task<ActionResult> AddMovieRatings([FromBody] AddMovieRatingsCommandRequest model)
