@@ -94,7 +94,7 @@ namespace Test_API_Interest.Controllers
                 {
                     MovieId = per.MovieId,
                     link = per.Link,
-                    person = new List<object>(),
+                    //person = new List<object>(),
                     genre = new
                     {
                         id = per.Genre.GenreId,
@@ -103,10 +103,10 @@ namespace Test_API_Interest.Controllers
                     }
                 };
 
-                foreach (var item in per.Persons)
-                {
-                    response.person.Add(item);
-                }
+                //foreach (var item in per.Persons)
+                //{
+                //    response.person.Add(item);
+                //}
                 ViewModel.Add(response);
             }
             return Ok(ViewModel);
